@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     FreeRTOS V8.2.1 - Copyright (C) 2015 Real Time Engineers Ltd.
     All rights reserved
 
@@ -84,7 +84,7 @@ task.h is included from an application file. */
 
 //#include "FreeRTOS.h"
 //#include "task.h"
-#include "heap_4.h"   //Ò»Ğ©±ØĞèµÄ¶¨ÒåºÍÅäÖÃ
+#include "heap_4.h"   //ä¸€äº›å¿…éœ€çš„å®šä¹‰å’Œé…ç½®
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
