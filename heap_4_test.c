@@ -1,10 +1,10 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include "stdlib.h"
 #include "stdint.h"
 #include "string.h"
 #include "stdbool.h"
 
-#include "heap_4.h"  //heap_4ÒÆÖ²£¬Ä¿Ç°ÔÚ32Î»ÏµÍ³ÉÏ²âÊÔ
+#include "heap_4.h"  //heap_4ç§»æ¤ï¼Œç›®å‰åœ¨32ä½ç³»ç»Ÿä¸Šæµ‹è¯•
 
 #include "windows.h"
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	for (i = 0; i < COUNT; i++)
 	{
 		count[i] = (i + 1) * 32;
-		//Êµ¼ÊĞèÕ¼ÓÃÄÚ´æ´óĞ¡£¬°üÀ¨8×Ö½ÚµÄÄÚ´æ¹ÜÀí½á¹¹²¢ÇÒ°´ÅäÖÃµÄ×Ö½Ú¶ÔÆë
+		//å®é™…éœ€å ç”¨å†…å­˜å¤§å°ï¼ŒåŒ…æ‹¬8å­—èŠ‚çš„å†…å­˜ç®¡ç†ç»“æ„å¹¶ä¸”æŒ‰é…ç½®çš„å­—èŠ‚å¯¹é½
 		int count_real = count[i] + 8;
 		/* Ensure that blocks are always aligned to the required number
 		of bytes. */
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		//·ÖÅä
+		//åˆ†é…
 		for (i = 0; i < COUNT; i++)
 		{
 			str[i] = pvPortMalloc(count[i]);
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 				printf("malloc %d failed!\n", i);
 			}
 		}
-		//ÊÍ·Å
+		//é‡Šæ”¾
 		for (i = 0; i < COUNT; i++)
 		{
 			if (str[i])
@@ -58,14 +58,14 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		printf("FreeHeapSize:%lu\r\n", xPortGetFreeHeapSize());
-		printf("MinimumEverFreeHeapSize:%lu\r\n", xPortGetMinimumEverFreeHeapSize());
+		printf("FreeHeapSize:%zu\r\n", xPortGetFreeHeapSize());
+		printf("MinimumEverFreeHeapSize:%zu\r\n", xPortGetMinimumEverFreeHeapSize());
 
-#ifdef _WIN32
+#ifdef _WIN32   //windowsä¸‹
 		Sleep(1000);
 #endif
 	}
-	
+
 
 	system("pause");
 	return 0;

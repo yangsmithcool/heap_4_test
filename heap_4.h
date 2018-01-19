@@ -1,5 +1,5 @@
-/*
- *	ÎªFreeRTOSÖĞµÄheap_4ÒÆÖ²Ìí¼ÓÍ·ÎÄ¼ş£¬¼ÓÈëÒ»Ğ©ÒÆÖ²ËùĞè¶¨ÒåºÍÅäÖÃÑ¡Ïî
+ï»¿/*
+ *	ä¸ºFreeRTOSä¸­çš„heap_4ç§»æ¤æ·»åŠ å¤´æ–‡ä»¶ï¼ŒåŠ å…¥ä¸€äº›ç§»æ¤æ‰€éœ€å®šä¹‰å’Œé…ç½®é€‰é¡¹
  */
 
 #ifndef __HEAP_4_H
@@ -8,12 +8,12 @@
 #include "stdint.h"
 
 
-#define configTOTAL_HEAP_SIZE                   ( ( size_t ) ( 1*1024*1024 * 1024 ) )  //¶Ñ¿Õ¼ä´óĞ¡ÅäÖÃ
-#define configAPPLICATION_ALLOCATED_HEAP        0                             //Ê¹ÓÃÓÃ»§×Ô¶¨Òå¿Õ¼ä×÷Îª¶Ñ·ÖÅäÄÚ´æ
+#define configTOTAL_HEAP_SIZE                   ( ( size_t ) ( 1* 256 *1024 * 1024 ) )  //å †ç©ºé—´å¤§å°é…ç½®
+#define configAPPLICATION_ALLOCATED_HEAP        0                             //ä½¿ç”¨ç”¨æˆ·è‡ªå®šä¹‰ç©ºé—´ä½œä¸ºå †åˆ†é…å†…å­˜
 
 
-#define vTaskSuspendAll()    NULL       //¹ÒÆğËùÓĞÈÎÎñ
-#define xTaskResumeAll()     NULL       //¼ÌĞøËùÓĞÈÎÎñ
+#define vTaskSuspendAll()    NULL       //æŒ‚èµ·æ‰€æœ‰ä»»åŠ¡
+#define xTaskResumeAll()     NULL       //ç»§ç»­æ‰€æœ‰ä»»åŠ¡
 
  /* Normal assert() semantics without relying on the provision of an assert.h
  header file. */
@@ -22,48 +22,51 @@
 
 
 
- //×Ö½Ú¶ÔÆë£¬ÒÔÕâ¸öµÄ±¶Êı·ÖÅäÄÚ´æ
+ //å­—èŠ‚å¯¹é½ï¼Œä»¥è¿™ä¸ªçš„å€æ•°åˆ†é…å†…å­˜
 #define portBYTE_ALIGNMENT			8
 #if portBYTE_ALIGNMENT == 8
-	#define portBYTE_ALIGNMENT_MASK ( 0x0007 )
+#define portBYTE_ALIGNMENT_MASK ( 0x0007 )
 #endif
 
 #if portBYTE_ALIGNMENT == 4
-	#define portBYTE_ALIGNMENT_MASK	( 0x0003 )
+#define portBYTE_ALIGNMENT_MASK	( 0x0003 )
 #endif
 
 #if portBYTE_ALIGNMENT == 2
-	#define portBYTE_ALIGNMENT_MASK	( 0x0001 )
+#define portBYTE_ALIGNMENT_MASK	( 0x0001 )
 #endif
 
 #if portBYTE_ALIGNMENT == 1
-	#define portBYTE_ALIGNMENT_MASK	( 0x0000 )
+#define portBYTE_ALIGNMENT_MASK	( 0x0000 )
 #endif
 
 #ifndef portBYTE_ALIGNMENT_MASK
-	#error "Invalid portBYTE_ALIGNMENT definition"
+#error "Invalid portBYTE_ALIGNMENT definition"
 #endif
 
 
-//malloc×·×Ù
+//mallocè¿½è¸ª
 #ifndef traceMALLOC
-	#define traceMALLOC( pvAddress, uiSize )
+#define traceMALLOC( pvAddress, uiSize )
 #endif
-//free×·×Ù
+//freeè¿½è¸ª
 #ifndef traceFREE
-    #define traceFREE( pvAddress, uiSize )
+#define traceFREE( pvAddress, uiSize )
 #endif
 
 #ifndef mtCOVERAGE_TEST_MARKER
-	#define mtCOVERAGE_TEST_MARKER()
+#define mtCOVERAGE_TEST_MARKER()
 #endif
 
 
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 void *pvPortMalloc(size_t xWantedSize);
 void vPortFree(void *pv);
 size_t xPortGetFreeHeapSize(void);
 size_t xPortGetMinimumEverFreeHeapSize(void);
+
+
+
 
 #endif

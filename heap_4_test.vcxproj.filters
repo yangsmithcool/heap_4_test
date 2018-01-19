@@ -20,10 +20,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="heap_4.c">
+    <ClCompile Include="heap_4_test.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="heap_4_test.c">
+    <ClCompile Include="heap_4.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
