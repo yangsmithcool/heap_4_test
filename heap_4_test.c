@@ -7,17 +7,19 @@
 #include "heap_4.h"  //heap_4移植，目前在32位系统上测试
 
 #include "windows.h"
+//#include "unistd.h"
 
 int main(int argc, char *argv[])
 {
-#define COUNT   (1024)
-	char *str[COUNT] = { NULL };
-	int count[COUNT] = { 0 }, i = 0;
+#define COUNT   (8*1024-4)
+	static char *str[COUNT] = { NULL };
+	static int count[COUNT] = { 0 }, i = 0;
 	int64_t count_sum = 0;
 
 	for (i = 0; i < COUNT; i++)
 	{
 		count[i] = (i + 1) * 32;
+		//count[i] = 512;
 		//实际需占用内存大小，包括8字节的内存管理结构并且按配置的字节对齐
 		int count_real = count[i] + 8;
 		/* Ensure that blocks are always aligned to the required number
@@ -41,6 +43,7 @@ int main(int argc, char *argv[])
 			{
 				snprintf(str[i], count[i], "malloc %d ok!\n", i);
 				printf("%s", str[i]);
+				memset(str[i], 'a', count[i]);
 
 				//vPortFree(str[i]); str[i] = NULL;
 			}
@@ -60,13 +63,27 @@ int main(int argc, char *argv[])
 
 		printf("FreeHeapSize:%zu\r\n", xPortGetFreeHeapSize());
 		printf("MinimumEverFreeHeapSize:%zu\r\n", xPortGetMinimumEverFreeHeapSize());
+		printf("COUNT=%d,count_sum=%lld\n", COUNT, count_sum);
 
 #ifdef _WIN32   //windows下
 		Sleep(1000);
+#endif
+
+#ifdef __GNUC__  //gcc
+		sleep(1);
 #endif
 	}
 
 
 	system("pause");
 	return 0;
+}
+
+
+//内存分配失败回调函数
+void vApplicationMallocFailedHook(void)
+{
+	printf("Malloc Failed!\n");
+
+	printf("\n\n");
 }

@@ -8,8 +8,9 @@
 #include "stdint.h"
 
 
-#define configTOTAL_HEAP_SIZE                   ( ( size_t ) ( 1* 256 *1024 * 1024 ) )  //堆空间大小配置
+#define configTOTAL_HEAP_SIZE                   ( ( size_t ) ( 1* 1024 *1024 * 1024 ) )  //堆空间大小配置
 #define configAPPLICATION_ALLOCATED_HEAP        0                             //使用用户自定义空间作为堆分配内存
+#define configUSE_MALLOC_FAILED_HOOK            1                             //使用malloc失败回调函数
 
 
 #define vTaskSuspendAll()    NULL       //挂起所有任务
